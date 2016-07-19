@@ -1,0 +1,44 @@
+<html>
+	<head>	
+		<title>Grey Normal</title>
+	</head>
+	<body>
+		<img src="images/normalbig.jpg" id="big_image">
+		<br>
+		<div class="video_tile">
+			<img src="images/normal.jpg" data-highlight="images/normal.jpg" data-unhighlight="images/grey.jpg" data-bigimage="images/normalbig.jpg" data-position='1'>
+		</div>
+		<div class="video_tile">
+			<img src="images/grey1.jpg" data-highlight="images/normal1.jpg" data-unhighlight="images/grey1.jpg" data-bigimage="images/normal1big.jpg" data-postion='2'>
+		</div>
+		<div class="video_tile">
+			<img src="images/grey2.jpg" data-highlight="images/normal2.jpg" data-unhighlight="images/grey2.jpg" data-bigimage="images/normal2big.jpg" data-position='3'>
+		</div>
+		
+		<style>
+			.video_tile{
+				display:inline;
+				margin-right:5px;
+			}
+		</style>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				var prev_image 		= $(".video_tile:first").find('img');
+				var prev_position  	= '1';
+				$(".video_tile").click(function(){
+					var image		= $(this).find("img");
+					var position 	= image.attr('data-position');
+					if(prev_position != position){
+						$("#big_image").attr('src',image.attr('data-bigimage'));
+						prev_image.attr('src',prev_image.attr('data-unhighlight'));
+						image.attr('src',image.attr('data-highlight'));
+						prev_image = image;
+						prev_position = position;
+					}	
+				});
+			});
+		</script>
+	</body>
+</html>
